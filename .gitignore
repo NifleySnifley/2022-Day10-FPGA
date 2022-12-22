@@ -1,0 +1,11 @@
+*.asc
+*.bin
+*.json
+*.out
+/verilog
+/build
+
+*.txt
+/sim_build
+*.xml
+__pycache__/
