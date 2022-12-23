@@ -6,6 +6,8 @@
 /build
 
 *.txt
-/sim_build
+**/sim_build
 *.xml
-__pycache__/
+**/__pycache__/
+
+/src/ROM.sv
