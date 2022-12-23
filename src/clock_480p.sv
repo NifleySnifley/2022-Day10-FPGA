@@ -1,6 +1,7 @@
 // Project F Library - 640x480p60 Clock Generation (iCE40)
 // (C)2022 Will Green, open source hardware released under the MIT License
 // Learn more at https://projectf.io
+// Modified by Nifley for use with the Upduino 3.1's on-board 12MHz clock
 
 `default_nettype none
 `timescale 1ns / 1ps
@@ -22,20 +23,6 @@ module clock_480p (
     localparam FILTER_RANGE=3'b001;
 
     logic locked;
-    // SB_PLL40_PAD #(
-    //     .FEEDBACK_PATH(FEEDBACK_PATH),
-    //     .DIVR(DIVR),
-    //     .DIVF(DIVF),
-    //     .DIVQ(DIVQ),
-    //     .FILTER_RANGE(FILTER_RANGE)
-    // ) SB_PLL40_PAD_inst (
-    //     .PACKAGEPIN(clk_12m),
-    //     .PLLOUTGLOBAL(clk_pix),  // use global clock network
-    //     .RESETB(rst),
-    //     .BYPASS(1'b0),
-    //     .LOCK(locked)
-    // );
-
     SB_PLL40_2F_CORE #(
         .DIVR(DIVR), 
         .DIVF(DIVF), 

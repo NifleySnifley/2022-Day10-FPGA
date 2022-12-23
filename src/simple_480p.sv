@@ -1,3 +1,4 @@
+// 480p VGA driver (credit to projectf)
 module simple_480p (
     input  wire logic clk_pix,   // pixel clock
     input  wire logic rst_pix,   // reset in pixel clock domain
@@ -7,7 +8,7 @@ module simple_480p (
     output      logic vsync,     // vertical sync
     output      logic de,         // data enable (low in blanking interval)
     output      logic [9:0] frame
-    );
+);
 
     // horizontal timings
     parameter HA_END = 639;           // end of active pixels

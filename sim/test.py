@@ -1,6 +1,5 @@
-# Write to ROM.v
-from romgen import makerom, SCREENW, SCREENH
-ROM = makerom()
+SCREENW = 40
+SCREENH = 6
 
 import cocotb
 from cocotb.triggers import Timer, RisingEdge, ReadOnly, FallingEdge

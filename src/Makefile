@@ -11,8 +11,11 @@ main.bin: main.asc
 main.asc: main.json ./upduino.pcf
 	nextpnr-ice40 --up5k --package sg48 --json main.json --pcf ./upduino.pcf --asc main.asc   # run place and route
 
-main.json: main.sv clock_480p.sv simple_480p.sv crt.sv ROM.sv
+main.json: main.sv clock_480p.sv simple_480p.sv crt.sv ROM.sv 
 	yosys -q -p "synth_ice40 -json main.json" main.sv clock_480p.sv simple_480p.sv crt.sv ROM.sv
+
+ROM.sv: ../input.txt
+	cd .. && python3 ./romgen.py
 
 .PHONY: flash
 flash:
