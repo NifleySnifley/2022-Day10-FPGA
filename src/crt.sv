@@ -1,3 +1,5 @@
+`default_nettype none
+
 module crt(
         input        clk,
         // input        rst,

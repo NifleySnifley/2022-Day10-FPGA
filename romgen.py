@@ -22,22 +22,20 @@ def makerom():
 
 	romstr = ""
 	for i,d in enumerate(ROM):
-		romstr += f"\t\t{ADDRBITS}'d{i} : data = {DATABITS}'({d});\n"
+		n = d if d >= 0 else 255+d
+		romstr += f"\t\t{ADDRBITS}'d{i} : data = {d};\n"
 		
 	# print(romstr)
 
 	VERILOG = f"""
-module ROM
-#(
-	parameter addr_bits = {ADDRBITS},
-				data_width = {DATABITS}
-)
-(
+module ROM (
 	input wire [addr_bits-1:0] addr,
 	output reg [data_width-1:0] data,  // reg (not wire)
 	output wire [7:0] screen_w,
 	output wire [7:0] screen_h
 );
+parameter addr_bits = {ADDRBITS},
+		  data_width = {DATABITS};
 
 assign screen_w = 8'd{SCREENW};
 assign screen_h = 8'd{SCREENH};
@@ -52,7 +50,7 @@ end
 endmodule
 """
 
-	with open("./src/ROM.v", 'w') as f:
+	with open("./src/ROM.sv", 'w') as f:
 		f.write(VERILOG)
   
 	# print("Successfully created ROM.v!")

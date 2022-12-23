@@ -1,3 +1,10 @@
+// Project F: FPGA Graphics - Simple 640x480p60 Display
+// (C)2022 Will Green, open source hardware released under the MIT License
+// Learn more at https://projectf.io/posts/fpga-graphics/
+
+`default_nettype none
+`timescale 1ns / 1ps
+
 module simple_480p (
     input  wire logic clk_pix,   // pixel clock
     input  wire logic rst_pix,   // reset in pixel clock domain
@@ -6,7 +13,7 @@ module simple_480p (
     output      logic hsync,     // horizontal sync
     output      logic vsync,     // vertical sync
     output      logic de         // data enable (low in blanking interval)
-);
+    );
 
     // horizontal timings
     parameter HA_END = 639;           // end of active pixels
