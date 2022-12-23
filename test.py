@@ -18,17 +18,25 @@ def dbg_dump():
 
 async def generate_clock(dut):
     """Generate clock pulses."""
+    x,y = 0,0
 
-    for cycle in range(SCREENW*SCREENH+1):
-        print('██' if dut.signal.value else '  ', end=('\n' if ((cycle+1)%SCREENW) == 0 else ''))
+    for cycle in range(SCREENW*SCREENH+1):        
+        dut.x.value = x
+        dut.y.value = y
+        dut.rst.value = x == 0 and y == 6
         
-        dut.clk.value = 0
-        await Timer(1, units="ns")
         dut.clk.value = 1
         await Timer(1, units="ns")
         dut.clk.value = 0
+        await Timer(1, units="ns")
+        # dut.clk.value = 0
    
-        dbg_print(int(dut.DEBUG.value))
+        print('██' if dut.signal.value else '  ', end=('\n' if ((cycle+1)%SCREENW) == 0 else ''))
+   
+        dbg_print(x,y)
+        
+        y = y+1 if x == 39 else 0
+        x = x+1 if x != 39 else 0
 
 # # @cocotb.coroutine
 # async def handle_rom_read(dut):
